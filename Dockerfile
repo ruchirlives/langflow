@@ -18,8 +18,6 @@ WORKDIR $HOME/app
 
 COPY --chown=user:user . $HOME/app
 
-RUN pip install --no-cache-dir --user "langflow"
+RUN pip install --no-cache-dir --user "langflow>=0.5.0" gunicorn
 
-CMD ["python", "-m", "langflow", "run", "--host", "0.0.0.0", "--port", "8080"]
-
-
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8080", "langflow.main:app"]
