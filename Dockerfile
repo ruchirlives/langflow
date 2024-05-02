@@ -1,4 +1,4 @@
-FROM python:3.10.11-slim
+FROM python:3.10-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
@@ -18,6 +18,6 @@ WORKDIR $HOME/app
 
 COPY --chown=user:user . $HOME/app
 
-RUN pip install --no-cache-dir --user "langflow>=0.5.0" gunicorn
+RUN pip install --no-cache-dir --user "langflow>=0.5.0"
 
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8080", "langflow.main:app"]
+CMD ["python", "-m", "langflow", "run", "--host", "0.0.0.0", "--port", "8080"]
