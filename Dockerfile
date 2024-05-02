@@ -18,6 +18,6 @@ WORKDIR $HOME/app
 
 COPY --chown=user:user . $HOME/app
 
-RUN pip install --no-cache-dir --user "langflow\>=0.5.0"
+RUN pip install --no-cache-dir --user "langflow"
 
 CMD ["python", "-m", "langflow", "run", "--host", "0.0.0.0", "--port", "7860"]
