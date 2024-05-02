@@ -20,4 +20,6 @@ COPY --chown=user:user . $HOME/app
 
 RUN pip install --no-cache-dir --user "langflow"
 
-CMD ["python", "-m", "langflow", "run", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["python", "-m", "langflow", "run", "--host", "0.0.0.0", "--port", "8080"]
+
+
